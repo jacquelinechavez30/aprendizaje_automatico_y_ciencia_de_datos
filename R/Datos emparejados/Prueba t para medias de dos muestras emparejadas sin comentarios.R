@@ -1,0 +1,35 @@
+X <- c(100, 102, 96, 106, 110, 110, 120, 112, 112, 90)
+Y <- c(104, 88, 100, 98, 102, 92, 96, 100, 96, 96)
+resultado <- t.test(X, Y, paired = TRUE)
+valor_t <- as.numeric(resultado$statistic)
+gl <- resultado$parameter
+p_valor <- resultado$p.value
+alpha <- 0.05
+valor_critico <- qt(1 - alpha / 2, df = gl)
+if (abs(valor_t) > valor_critico) {
+  mensaje <- "Se RECHAZA la hipótesis nula"
+  color_mensaje <- "green"
+} else {
+  mensaje <- "No se rechaza la hipótesis nula"
+  color_mensaje <- "red"
+}
+  cat("Resultado:", mensaje, "\n")
+  cat("Estadístico t =", round(valor_t, 3), "\n")
+  cat("Valor crítico =", round(valor_critico, 3), "\n")
+  cat("p-valor =", round(p_valor, 4), "\n")
+  x_vals <- seq(-4, 4, length.out = 1000)
+  y_vals <- dt(x_vals, df = gl)
+  plot(x_vals, y_vals, type = "l", lwd = 2, col = "navy",
+       main = "Distribución t con valor observado y crítico",
+       xlab = "Valor t", ylab = "Densidad")
+  abline(v = valor_t, col = "red", Iwd = 2, Ity = 2)
+  abline(v = valor_critico, col = "orange", Iwd = 2, Ity = 3)
+  abline(v = -valor_critico, col = "orange", Iwd = 2, Ity = 3)
+  legend("topright", legend = c(
+    paste("t observado =", round(valor_t, 3)),
+    paste("t crítico =", round(valor_critico, 3)),
+    paste("p-valor =", round(p_valor, 4)),
+    mensaje
+  ), text.col = c("black", "black", "black", color_mensaje), bty = "n")
+  
+  

@@ -1,0 +1,12 @@
+import matplotlib.pyplot as pyplot
+equitacion = ((17, 18, 21, 22, 19, 21, 25, 22, 25, 24),(3, 6, 3.5, 4, 5, 6.3, 4.5, 5, 4.5, 4))
+natacion = ((17, 18, 20, 19, 22, 21, 23, 19, 21, 24), (8, 9, 7, 10, 7.5, 9, 8, 7, 8.5, 9))
+navegacion = ((31, 28, 29, 36, 27, 32, 34, 35, 33, 39),(4, 6.3, 6, 3, 5, 7.5, 2, 5, 7, 4))
+pyplot.scatter(x=equitacion[0], y=equitacion[1], c='red', marker='o',label='equitacion')
+pyplot.scatter(x=natacion[0], y=natacion[1], c='green', marker='^', label='natacion')
+pyplot.scatter(x=navegacion[0], y=navegacion[1], c='blue', marker='*', label='navegacion')
+pyplot.xlabel('Edad')
+pyplot.ylabel('Horas')
+pyplot.title('Actividades')
+pyplot.legend()
+pyplot.show()
